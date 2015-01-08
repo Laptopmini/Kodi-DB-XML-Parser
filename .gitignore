@@ -4,3 +4,9 @@
 *.deps
 
 parser
+
+curl-7.39.0/
+
+xml-files/
+
+debugdump.txt

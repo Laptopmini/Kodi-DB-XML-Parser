@@ -7,6 +7,14 @@
 
 #include "astree.h"
 
+astree* movie_astree;
+astree* tvshow_astree;
+
+astree* new_astree () {
+  astree* tree = new astree();
+  return tree;
+}
+
 astree* new_astree (int symbol, int filenr, int linenr,
                     int offset) {
    astree* tree = new astree();
@@ -15,12 +23,32 @@ astree* new_astree (int symbol, int filenr, int linenr,
    tree->linenr = linenr;
    tree->offset = offset;
 
+    // String title;
+    // int year;
+    // int month;
+    // int day;
+    // String plot;
+    // String runtime;
+    // int    runtime_int;
+    // String director;
+    // String folder;
+    // String filename;
+    // String filenameandpath;
+    // String trailer;
+    // String poster;
+    // String awards;
+    // String imdbID;
+    // Double imdbRating;
+    // String height;
+    // List   actorList;
+
    return tree;
 }
 
-astree* new_parseroot (void) {
-  yyparse_astree = new_astree (0, 0, 0, 0);
-  return yyparse_astree;
+void new_parseroot (void) {
+  movie_astree = new_astree (0, 0, 0, 0);
+  tvshow_astree = new_astree (0, 0, 0, 0);
+  return;
 }
 
 int getFilenr(astree* node){
@@ -98,6 +126,7 @@ void dump_astree (FILE* outfile, astree* root) {
 
 
 void free_ast (astree* root) {
+  if (root == NULL) return;
    while (not root->children.empty()) {
       astree* child = root->children.back();
       root->children.pop_back();
